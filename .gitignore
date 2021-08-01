@@ -30,10 +30,11 @@
 CMakeCache.txt
 CMakeFiles/*
 cmake_install.cmake
+.Makefile
 
 
 # Executables
 *.exe
 *.out
 *.app
-GLEninge
+GLEngine
