@@ -27,8 +27,13 @@
 *.lib
 
 .vscode
+CMakeCache.txt
+CMakeFiles/*
+cmake_install.cmake
+
 
 # Executables
 *.exe
 *.out
 *.app
+GLEninge
