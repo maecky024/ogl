@@ -14,6 +14,16 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(OpenGL_GL_PREFERENCE GLVND)
 
+# Add source files
+file(GLOB_RECURSE SOURCE_FILES 
+	${CMAKE_SOURCE_DIR}/src/*.c
+	${CMAKE_SOURCE_DIR}/src/*.cpp)
+	
+# Add header files
+file(GLOB_RECURSE HEADER_FILES 
+	${CMAKE_SOURCE_DIR}/src/*.h
+	${CMAKE_SOURCE_DIR}/src/*.hpp)
+
 find_package(GLFW3 REQUIRED)
 include_directories(${GLFW_INCLUDE_DIRS})
 link_directories(${GLFW_LIBRARY_DIRS})
@@ -48,9 +58,9 @@ endif(NOT OpenGL_FOUND)
 #        message("   -> GLM found.)
 #endif(NOT GLM_FOUND)
 
+set(LIBS glfw OpenGL::GL)
 
 # add the executable
-add_executable(GLEngine src/main.cpp)
+add_executable(GLEngine ${SOURCE_FILES} ${HEADER_FILES})
 
-target_link_libraries(GLEngine OpenGL::GL)
-target_link_libraries(GLEngine glfw)
+target_link_libraries(${PROJECT_NAME} ${LIBS})
