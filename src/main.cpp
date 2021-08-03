@@ -1,6 +1,4 @@
-#include <GL/gl.h>
 #include <iostream>
-#include <GLFW/glfw3.h>
 #include "window.h"
 
 using namespace bitmutation::ogl;
@@ -11,11 +9,10 @@ int main(int, char**) {
 
     if (w->init()==0)
     {
-        while (!glfwWindowShouldClose(w->getGLFWWindow()))
+        while (!w->shouldWindowClose())
         {
-            // Keep running
             w->draw();
-            glfwPollEvents();
+            w->handleInput();
         }
     }
 }

@@ -22,6 +22,8 @@ namespace bitmutation
 
                 void draw();
                 int init();
+                void handleInput();
+                bool shouldWindowClose();
 
                 GLFWwindow *getGLFWWindow();
             private:

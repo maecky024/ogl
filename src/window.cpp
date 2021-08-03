@@ -110,3 +110,13 @@ void bitmutation::ogl::Window::framebuffer_size_callback(GLFWwindow* window, int
         glViewport(0, 0, width, height);
         Window::getInstance().draw();
 }
+
+void bitmutation::ogl::Window::handleInput() 
+{
+                        glfwPollEvents();
+}
+
+bool bitmutation::ogl::Window::shouldWindowClose()
+{
+    return glfwWindowShouldClose(this->glfwwin);
+}
