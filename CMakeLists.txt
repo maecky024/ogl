@@ -25,8 +25,6 @@ file(GLOB_RECURSE HEADER_FILES
 	${CMAKE_SOURCE_DIR}/src/*.hpp)
 
 find_package(GLFW3 REQUIRED)
-include_directories(${GLFW_INCLUDE_DIRS})
-link_directories(${GLFW_LIBRARY_DIRS})
 add_definitions(${GLFW_DEFINITIONS})
 
 if(NOT GLFW3_FOUND)
@@ -37,8 +35,6 @@ endif(NOT GLFW3_FOUND)
 
 
 find_package(OpenGL REQUIRED)
-include_directories(${OpenGL_INCLUDE_DIRS})
-link_directories(${OpenGL_LIBRARY_DIRS})
 add_definitions(${OpenGL_DEFINITIONS})
 
 if(NOT OpenGL_FOUND)
@@ -58,7 +54,13 @@ endif(NOT OpenGL_FOUND)
 #        message("   -> GLM found.)
 #endif(NOT GLM_FOUND)
 
-set(LIBS glfw OpenGL::GL)
+string(REGEX REPLACE "glfw3.lib" ""  GLFW3_LIBRARY_PATH "${GLFW3_LIBRARY}" )
+
+
+include_directories(${GLFW3_INCLUDE_DIR})
+link_directories(${GLFW3_LIBRARY_PATH})
+
+set(LIBS glfw3 OpenGL::GL)
 
 # add the executable
 add_executable(GLEngine ${SOURCE_FILES} ${HEADER_FILES})
