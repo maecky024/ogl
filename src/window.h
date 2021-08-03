@@ -1,4 +1,7 @@
 
+#ifndef __BM_WINDOW_H
+#define __BM_WINDOW_H
+
 #include <GLFW/glfw3.h>
 
 namespace bitmutation
@@ -26,15 +29,19 @@ namespace bitmutation
                 bool shouldWindowClose();
 
                 GLFWwindow *getGLFWWindow();
+
             private:
+
+                GLFWwindow *glfwwin;
 
                 Window();
                 ~Window();
 
-                GLFWwindow *glfwwin;
             public:
                 Window(Window const&) = delete;
                 void operator=(Window const&) = delete;
         };
     }
 }
+
+#endif
