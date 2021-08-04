@@ -54,13 +54,20 @@ endif(NOT OpenGL_FOUND)
 #        message("   -> GLM found.)
 #endif(NOT GLM_FOUND)
 
-string(REGEX REPLACE "glfw3.lib" ""  GLFW3_LIBRARY_PATH "${GLFW3_LIBRARY}" )
 
+IF (WIN32)
+        string(REGEX REPLACE "glfw3.lib" ""  GLFW3_LIBRARY_PATH "${GLFW3_LIBRARY}" )
+        set(LIBS glfw3 OpenGL::GL)
+
+ELSE()
+        string(REGEX REPLACE "libglfw.*" ""  GLFW3_LIBRARY_PATH "${GLFW3_LIBRARY}" )
+        set(LIBS glfw OpenGL::GL)
+
+ENDIF()
 
 include_directories(${GLFW3_INCLUDE_DIR})
 link_directories(${GLFW3_LIBRARY_PATH})
 
-set(LIBS glfw3 OpenGL::GL)
 
 # add the executable
 add_executable(GLEngine ${SOURCE_FILES} ${HEADER_FILES})
