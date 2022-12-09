@@ -1,7 +1,10 @@
-#include "window.h"
+#include "window.hpp"
+#include <GLFW/glfw3.h>
 #include <iostream>
+#include <locale>
+#include "opengl.hpp"
 
-bitmutation::ogl::Window::Window()
+bitmutation::ogl::Window::Window(Renderer *r)
 {
     std::cout << "Window::CTOR()" << std::endl;
 }
@@ -18,7 +21,6 @@ GLFWwindow *bitmutation::ogl::Window::getGLFWWindow()
     return this->glfwwin;
 }
 
-
 int bitmutation::ogl::Window::init()
 {
     if (!glfwInit())
@@ -27,19 +29,15 @@ int bitmutation::ogl::Window::init()
         return 1;
     }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-
 // FULLSCREEN
 // GLFWwindow* window = glfwCreateWindow(640, 480, "My Title", glfwGetPrimaryMonitor(), NULL);
 
-    glfwwin = glfwCreateWindow(640, 480, "My Title", NULL, NULL);
+    glfwwin = glfwCreateWindow(1280, 720, "My Title", NULL, NULL);
     if (!glfwwin)
     {
         return 2;
         // Window or OpenGL context creation failed
     }
-
 
     // Set Callbacks
     glfwSetWindowCloseCallback(glfwwin, window_close_callback);
@@ -52,22 +50,18 @@ int bitmutation::ogl::Window::init()
     
     glfwMakeContextCurrent(glfwwin);    
 
+    
+
     return 0;
-}
-
-
-void bitmutation::ogl::Window::draw()
-{
-    glClearColor(0.0f,0.0f,0.0f,0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glfwSwapBuffers(this->glfwwin);
-
 }
 
 void bitmutation::ogl::Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
+    else{
+        std::cout << "Key with code 0x" << std::hex <<  key << "(" << char(key) << ") pressed" << std::endl;
+    }
 }
 
 void bitmutation::ogl::Window::mb_callback(GLFWwindow*window ,int button, int action, int mods)
@@ -106,17 +100,24 @@ void bitmutation::ogl::Window::window_size_callback(GLFWwindow* window, int widt
 void bitmutation::ogl::Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
         std::cout << "FW SIZE CB " << width << "x" << height << std::endl;
-
         glViewport(0, 0, width, height);
-        Window::getInstance().draw();
+        glfwSwapBuffers(::glfwGetCurrentContext());
+
 }
 
 void bitmutation::ogl::Window::handleInput() 
 {
-                        glfwPollEvents();
+    glfwPollEvents();
 }
 
 bool bitmutation::ogl::Window::shouldWindowClose()
 {
     return glfwWindowShouldClose(this->glfwwin);
 }
+
+void bitmutation::ogl::Window::renderScene(Scene* scene) 
+{
+    scene->render();
+    glfwSwapBuffers(this->glfwwin);
+}
+    
