@@ -17,7 +17,6 @@ public:
     return instance;
   }
 
-
   static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
   static void mb_callback(GLFWwindow *window, int button, int action, int mods);
   static void cursor_enter_callback(GLFWwindow *window, int entered);
@@ -33,6 +32,8 @@ public:
   GLFWwindow *getGLFWWindow();
 
 private:
+  Renderer *renderer;
+
   GLFWwindow *glfwwin;
   Window(Renderer *r);
   ~Window();

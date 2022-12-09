@@ -9,6 +9,7 @@ private:
 public:
 			Renderer();
   			~Renderer();
+			virtual bool isVulkan()=0;
 		};
 	} // namespace ogl
 } // namespace bitmutation

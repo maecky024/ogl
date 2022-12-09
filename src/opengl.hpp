@@ -4,6 +4,7 @@
 
 #include "renderer.hpp"
 
+
 namespace bitmutation 
 { 
 	namespace ogl 
@@ -23,6 +24,7 @@ namespace bitmutation
 		public:
 			void init();
 			void draw();
+			bool isVulkan() override;
 			Opengl(Opengl const &) = delete;
 			void operator=(Opengl const &) = delete;
 		};

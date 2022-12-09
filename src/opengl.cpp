@@ -1,13 +1,20 @@
 #include "opengl.hpp"  
+#include <vulkan/vulkan_core.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
 #include <GL/gl.h>
 #include "GLFW/glfw3.h"
+#include <iostream>
 
 bitmutation::ogl::Opengl::Opengl()
 {
-	
+
+}
+
+bool bitmutation::ogl::Opengl::isVulkan()
+{
+    return false;
 }
 	
 bitmutation::ogl::Opengl::~Opengl()

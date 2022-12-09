@@ -38,7 +38,6 @@ else(GLFW3_FOUND)
         message("   -> GLFW found ${GLFW3_LIBRARY}.")
 endif(NOT GLFW3_FOUND)
 
-
 find_package(OpenGL REQUIRED)
 add_definitions(${OpenGL_DEFINITIONS})
 

@@ -2,10 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <locale>
-#include "opengl.hpp"
 
 bitmutation::ogl::Window::Window(Renderer *r)
 {
+    this->renderer=r;
     std::cout << "Window::CTOR()" << std::endl;
 }
 
@@ -28,6 +28,15 @@ int bitmutation::ogl::Window::init()
         // Initialization failed
         return 1;
     }
+    
+    if (renderer->isVulkan()){
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+        std::cout << "Window Vulkan found" << std::endl;
+    }
+    else{
+        std::cout << "Window OpenGL found" << std::endl;
+    }
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 // FULLSCREEN
 // GLFWwindow* window = glfwCreateWindow(640, 480, "My Title", glfwGetPrimaryMonitor(), NULL);
@@ -49,8 +58,6 @@ int bitmutation::ogl::Window::init()
     glfwSetMouseButtonCallback(glfwwin, mb_callback);
     
     glfwMakeContextCurrent(glfwwin);    
-
-    
 
     return 0;
 }
@@ -100,8 +107,8 @@ void bitmutation::ogl::Window::window_size_callback(GLFWwindow* window, int widt
 void bitmutation::ogl::Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
         std::cout << "FW SIZE CB " << width << "x" << height << std::endl;
-        glViewport(0, 0, width, height);
-        glfwSwapBuffers(::glfwGetCurrentContext());
+        //glViewport(0, 0, width, height);
+        //glfwSwapBuffers(::glfwGetCurrentContext());
 
 }
 
