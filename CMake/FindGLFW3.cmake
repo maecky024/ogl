@@ -18,12 +18,13 @@ set( _glfw3_HEADER_SEARCH_DIRS
 "/usr/include"
 "/usr/local/include"
 "${CMAKE_SOURCE_DIR}/includes"
+"C:/SDK/glfw-3.3.4.bin.WIN64/include"
 "C:/Program Files (x86)/glfw/include" )
 set( _glfw3_LIB_SEARCH_DIRS
 "/usr/lib"
 "/usr/local/lib"
 "${CMAKE_SOURCE_DIR}/lib"
-"C:/Program Files (x86)/glfw/lib-msvc110" )
+"C:/SDK/glfw-3.3.4.bin.WIN64/lib-vc2019" )
 
 # Check environment for root search directory
 set( _glfw3_ENV_ROOT $ENV{GLFW3_ROOT} )
@@ -42,7 +43,7 @@ FIND_PATH(GLFW3_INCLUDE_DIR "GLFW/glfw3.h"
 PATHS ${_glfw3_HEADER_SEARCH_DIRS} )
 
 # Search for the library
-FIND_LIBRARY(GLFW3_LIBRARY NAMES glfw3 glfw glfw3.lib
+FIND_LIBRARY(GLFW3_LIBRARY NAMES glfw3 GLFW3 glfw glfw3.lib
 PATHS ${_glfw3_LIB_SEARCH_DIRS} )
 INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLFW3 DEFAULT_MSG

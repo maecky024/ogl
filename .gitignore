@@ -38,3 +38,15 @@ build/*
 *.out
 *.app
 GLEngine
+/GLEngine.dir/Debug
+/.vs
+/x64/Debug/ZERO_CHECK
+/ZERO_CHECK.vcxproj.filters
+/ZERO_CHECK.vcxproj
+/GLEngine.vcxproj.user
+/GLEngine.vcxproj.filters
+/GLEngine.vcxproj
+/GLEngine.sln
+/ALL_BUILD.vcxproj.user
+/ALL_BUILD.vcxproj.filters
+/ALL_BUILD.vcxproj
