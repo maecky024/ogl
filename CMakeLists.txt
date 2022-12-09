@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.20)
 
+set(CMAKE_CXX_COMPILER g++)
 # set the project name
 project(GLEngine VERSION 1.0)
 
@@ -9,9 +10,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+find_package(Vulkan REQUIRED FATAL_ERROR) # error
+find_package(glfw3 REQUIRED FATAL_ERROR) # error
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
 set(OpenGL_GL_PREFERENCE GLVND)
 
 # Add source files
@@ -55,6 +60,11 @@ endif(NOT OpenGL_FOUND)
 #endif(NOT GLM_FOUND)
 
 
+set(VULKAN_PATH ${Vulkan_INCLUDE_DIRS})
+set(VULKAN_PATH "${VULKAN_SDK}/${VULKAN_VERSION}")
+set(VULKAN_LIB_LIST "vulkan")
+
+
 IF (WIN32)
         string(REGEX REPLACE "glfw3.lib" ""  GLFW3_LIBRARY_PATH "${GLFW3_LIBRARY}" )
         set(LIBS glfw3 OpenGL::GL)
@@ -73,3 +83,4 @@ link_directories(${GLFW3_LIBRARY_PATH})
 add_executable(GLEngine ${SOURCE_FILES} ${HEADER_FILES})
 
 target_link_libraries(${PROJECT_NAME} ${LIBS})
+target_link_libraries (${PROJECT_NAME} ${VULKAN_LIB_LIST})
