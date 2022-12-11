@@ -19,9 +19,10 @@ namespace bitmutation
 		private:
 			Configuration(std::string file);
 			~Configuration();
+			std::string filename;
 
 		public:
-
+			std::string ReadConfig(std::string key);
 			Configuration(Configuration const &) = delete;
 			void operator=(Configuration const &) = delete;
 		};
