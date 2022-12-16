@@ -19,6 +19,8 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 set(OpenGL_GL_PREFERENCE GLVND)
 
+find_package(Boost 1.74.0)
+
 # Add source files
 file(GLOB_RECURSE SOURCE_FILES 
 	${CMAKE_SOURCE_DIR}/src/*.c
@@ -74,7 +76,11 @@ ELSE()
 
 ENDIF()
 
-include_directories(${GLFW3_INCLUDE_DIR} ${Vulkan_INCLUDE_DIRS})
+if(NOT Boost_FOUND)
+        message(Error "   -> Boost not found")
+endif()
+
+include_directories(${GLFW3_INCLUDE_DIR} ${Vulkan_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 link_directories(${GLFW3_LIBRARY_PATH} ${Vulkan_INCLUDE_DIRS})
 
 
