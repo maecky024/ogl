@@ -77,7 +77,7 @@ ELSE()
 ENDIF()
 
 if(NOT Boost_FOUND)
-        message(Error "   -> Boost not found")
+        message(FATAL_ERROR Error "   -> Boost not found")
 endif()
 
 include_directories(${GLFW3_INCLUDE_DIR} ${Vulkan_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
