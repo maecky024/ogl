@@ -3,7 +3,8 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <GL/gl.h>
+
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include <iostream>
 
@@ -30,6 +31,12 @@ void bitmutation::ogl::Opengl::draw()
 
 void bitmutation::ogl::Opengl::init()
 {
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return;
+    }
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 }
