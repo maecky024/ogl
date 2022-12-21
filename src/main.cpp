@@ -6,6 +6,7 @@
 #include "vulkan.hpp"
 #include "configuration.hpp"
 
+
 using namespace bitmutation::ogl;
 
 int main(int, char**) {
