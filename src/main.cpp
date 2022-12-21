@@ -23,6 +23,7 @@ int main(int, char**) {
     }
 
     Window* w = &Window::getInstance(renderer);
+
     std::cout << config->ReadConfig("Fullscreen") << std::endl;
 
     Scene* s = new Scene();
@@ -30,6 +31,8 @@ int main(int, char**) {
     
     if (w->init()==0)
     {
+        renderer->init();
+
         while (!w->shouldWindowClose())
         {
             w->renderScene(s);

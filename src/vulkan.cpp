@@ -60,7 +60,7 @@ bitmutation::ogl::Vulkan::~Vulkan()
 	
 }
 
-void bitmutation::ogl::Vulkan::draw()
+void bitmutation::ogl::Vulkan::draw(Scene *scene)
 {
     
 }

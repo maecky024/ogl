@@ -24,8 +24,8 @@ namespace bitmutation
 			VkInstance instance;
 
 		public:
-			void init();
-			void draw();
+			void init() override;
+			void draw(Scene *scene) override;
 			bool isVulkan() override;
 			Vulkan(Vulkan const &) = delete;
 			void operator=(Vulkan const &) = delete;

@@ -125,7 +125,7 @@ bool bitmutation::ogl::Window::shouldWindowClose()
 
 void bitmutation::ogl::Window::renderScene(Scene* scene) 
 {
-    scene->render();
+    scene->render(this->renderer);
     glfwSwapBuffers(this->glfwwin);
 }
     

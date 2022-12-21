@@ -3,6 +3,7 @@
 #pragma once
 
 #include <string>
+#include "renderer.hpp"
 
 namespace bitmutation {
 namespace ogl {
@@ -14,7 +15,7 @@ public:
   Scene();
   ~Scene();
   bool loadScene(std::string filename);
-  bool render();
+  bool render(Renderer *renderer);
 };
 } // namespace ogl
 } // namespace bitmutation

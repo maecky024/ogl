@@ -23,9 +23,9 @@ bitmutation::ogl::Opengl::~Opengl()
 	
 }
 
-void bitmutation::ogl::Opengl::draw()
+void bitmutation::ogl::Opengl::draw(Scene *scene)
 {
-    glClearColor(0.0f,0.0f,0.0f,0.0f);
+    glClearColor(0.0f,0.0f,0.5f,0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 

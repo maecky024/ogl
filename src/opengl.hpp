@@ -9,6 +9,8 @@ namespace bitmutation
 { 
 	namespace ogl 
 	{
+		class Scene;
+
 		class Opengl : public Renderer
 		{
 		public:
@@ -22,8 +24,8 @@ namespace bitmutation
 			~Opengl();
 
 		public:
-			void init();
-			void draw();
+			void init() override;
+			void draw(Scene *scene) override;
 			bool isVulkan() override;
 			Opengl(Opengl const &) = delete;
 			void operator=(Opengl const &) = delete;

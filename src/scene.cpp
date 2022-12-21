@@ -18,8 +18,9 @@ bool bitmutation::ogl::Scene::loadScene(std::string filename)
     return true;            
 }
 
-bool bitmutation::ogl::Scene::render()
+bool bitmutation::ogl::Scene::render(Renderer *renderer)
 {
     //std::cout << "render" << std::endl;
+    renderer->draw(this);
     return true;
 }
