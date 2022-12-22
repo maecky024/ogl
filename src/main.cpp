@@ -24,8 +24,6 @@ int main(int, char**) {
 
     Window* w = &Window::getInstance(renderer);
 
-    std::cout << config->ReadConfig("Fullscreen") << std::endl;
-
     Scene* s = new Scene();
     s->loadScene("data/scene.msc");
     

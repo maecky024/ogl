@@ -3,16 +3,19 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <locale>
+#include <string>
+#include "logger.hpp"
 
 bitmutation::ogl::Window::Window(Renderer *r)
 {
     this->renderer=r;
-    std::cout << "Window::CTOR()" << std::endl;
+    Logger::getInstance().Log("Window::CTOR()");
 }
 
 bitmutation::ogl::Window::~Window()
 {
-    std::cout << "Window::DTOR()" << std::endl;
+    Logger::getInstance().Log("Window::DTOR()");
+
     glfwDestroyWindow(this->glfwwin);
     glfwTerminate();
 }
@@ -32,10 +35,10 @@ int bitmutation::ogl::Window::init()
     
     if (renderer->isVulkan()){
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-        std::cout << "Window Vulkan found" << std::endl;
+        Logger::getInstance().Log("Window Vulkan found");
     }
     else{
-        std::cout << "Window OpenGL found" << std::endl;
+        Logger::getInstance().Log("Window OpenGL found");
     }
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
@@ -68,7 +71,7 @@ void bitmutation::ogl::Window::key_callback(GLFWwindow* window, int key, int sca
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     else{
-        std::cout << "Key with code 0x" << std::hex <<  key << "(" << char(key) << ") pressed" << std::endl;
+        //Logger::getInstance().Log(std::string("Key with code " + std::to_string(key) + "(" + std::string(1,key) + ") pressed"));
     }
 }
 
@@ -76,11 +79,11 @@ void bitmutation::ogl::Window::mb_callback(GLFWwindow*window ,int button, int ac
 {
      if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
      {
-         std::cout << "Mouse RIGHT pressed" << std::endl;
+        Logger::getInstance().Log("Mouse RIGHT pressed");
      }
      else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
      {
-         std::cout << "Mouse LEFT pressed" << std::endl;
+        Logger::getInstance().Log("Mouse LEFT pressed");
      }
 }
 
@@ -88,26 +91,29 @@ void bitmutation::ogl::Window::cursor_enter_callback(GLFWwindow* window, int ent
 {
     if (entered)
     {
-        std::cout << "Cursor entered" << std::endl;
+        Logger::getInstance().Log("Cursor entered");
+
     }
     else{
-        std::cout << "Cursor left" << std::endl;
+        Logger::getInstance().Log("Cursor left");
     }
 }
 
 void bitmutation::ogl::Window::window_close_callback(GLFWwindow* window)
 {
-    std::cout << "Windows close CB" << std::endl;
+    Logger::getInstance().Log("Windows close CB");
+
 }
 
 void bitmutation::ogl::Window::window_size_callback(GLFWwindow* window, int width, int height)
 {
-    std::cout << "Windows SIZE CB " << width << "x" << height << std::endl;
+    //Logger::getInstance().Log(std::string("Windows SIZE CB " + std::to_string(width) + "x" + std::to_string(height)));
 }
 
 void bitmutation::ogl::Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-        std::cout << "FW SIZE CB " << width << "x" << height << std::endl;
+    //Logger::getInstance().Log(std::string("Windows SIZE CB " + std::to_string(width) + "x" + std::to_string(height)));
+
         //glViewport(0, 0, width, height);
         //glfwSwapBuffers(::glfwGetCurrentContext());
 
