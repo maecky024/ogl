@@ -5,10 +5,12 @@
 #include "GLFW/glfw3.h"
 #include <iostream>
 #include <vector>
+#include "logger.hpp"
 
 bitmutation::ogl::Vulkan::Vulkan()
 {
-    std::cout << "Init Vulkan" << std::endl;
+    Logger::getInstance().Log("Init Vulkan");
+
     VkApplicationInfo appInfo{};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.pApplicationName = "GLEngine";
@@ -40,10 +42,8 @@ bitmutation::ogl::Vulkan::Vulkan()
     std::vector<VkExtensionProperties> extensions(extensionCount);
     vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
 
-    std::cout << "available extensions:\n";
-
     for (const auto& extension : extensions) {
-        std::cout << '\t' << extension.extensionName << '\n';
+        Logger::getInstance().Log("\t " + std::string(extension.extensionName));
     }
 
     vkDestroyInstance(instance, nullptr);

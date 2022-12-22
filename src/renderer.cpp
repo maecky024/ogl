@@ -1,9 +1,11 @@
 #include "renderer.hpp"  
 #include <iostream>
+#include "logger.hpp"
 	
 bitmutation::ogl::Renderer::Renderer()
 {
-	std::cout << "Render Initiated" << std::endl;
+	Logger::getInstance().Log("Render Initialized");
+
 }
 	
 bitmutation::ogl::Renderer::~Renderer()

@@ -19,6 +19,7 @@ private:
 
 public:
   void Log(std::string message);
+  const std::string CurrentTimeStamp();
   Logger(Logger const &) = delete;
   void operator=(Logger const &) = delete;
 };

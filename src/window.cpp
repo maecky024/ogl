@@ -9,6 +9,7 @@
 bitmutation::ogl::Window::Window(Renderer *r)
 {
     this->renderer=r;
+    this->glfwwin = 0;
     Logger::getInstance().Log("Window::CTOR()");
 }
 
@@ -71,7 +72,7 @@ void bitmutation::ogl::Window::key_callback(GLFWwindow* window, int key, int sca
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     else{
-        //Logger::getInstance().Log(std::string("Key with code " + std::to_string(key) + "(" + std::string(1,key) + ") pressed"));
+        Logger::getInstance().Log(std::string("Key with code " + std::to_string(key) + "(" + std::string(1,key) + ") pressed"));
     }
 }
 

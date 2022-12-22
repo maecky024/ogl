@@ -7,6 +7,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include <iostream>
+#include "logger.hpp"
 
 bitmutation::ogl::Opengl::Opengl()
 {
@@ -33,7 +34,7 @@ void bitmutation::ogl::Opengl::init()
 {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cout << "Failed to initialize GLAD" << std::endl;
+        Logger::getInstance().Log("Failed to initialize GLAD");
         return;
     }
 

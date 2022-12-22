@@ -1,6 +1,7 @@
 #include "configuration.hpp"
 #include <iostream>
 #include <fstream>
+#include "logger.hpp"
 
 std::string bitmutation::ogl::Configuration::ReadConfig(std::string key)
 {
@@ -24,7 +25,7 @@ std::string bitmutation::ogl::Configuration::ReadConfig(std::string key)
 bitmutation::ogl::Configuration::Configuration(std::string file)
 {
     filename = file;
-    std::cout << "Loading config from " << file << std::endl;
+    Logger::getInstance().Log("Loading config from " + file);
 }
 
 bitmutation::ogl::Configuration::~Configuration()
